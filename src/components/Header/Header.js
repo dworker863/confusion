@@ -1,10 +1,11 @@
-import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import { Button, Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {
   faHome,
   faInfo,
   faList,
   faAddressCard,
+  faSignInAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -38,6 +39,15 @@ const Header = () => {
             <NavItem>
               <NavLink className="nav-link" to="/contacts">
                 <FontAwesomeIcon icon={faAddressCard} size="md" /> Contact Us
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink className="nav-link" to="/login">
+                <Button outline color="secondary" className="ml-auto">
+                  <FontAwesomeIcon icon={faSignInAlt} size="md" /> Login
+                </Button>
               </NavLink>
             </NavItem>
           </Nav>
