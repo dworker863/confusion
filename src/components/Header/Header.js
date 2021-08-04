@@ -1,4 +1,6 @@
-import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+
 import logo from 'assets/images/logo.png';
 import styles from './Header.module.css';
 
@@ -12,16 +14,24 @@ const Header = () => {
               <img className={styles.logo} src={logo} alt="Confusion" />
             </NavbarBrand>
             <NavItem>
-              <NavLink href="#">Home</NavLink>
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">About Us</NavLink>
+              <NavLink className="nav-link" to="/aboutus">
+                About Us
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Menu</NavLink>
+              <NavLink className="nav-link" to="/menu">
+                Menu
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Contact Us</NavLink>
+              <NavLink className="nav-link" to="/contacts">
+                Contact Us
+              </NavLink>
             </NavItem>
           </Nav>
         </div>
