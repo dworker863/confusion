@@ -1,4 +1,11 @@
-import { Button, Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import {
+  Button,
+  Jumbotron,
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavItem,
+} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import {
   faHome,
@@ -53,6 +60,20 @@ const Header = () => {
           </Nav>
         </div>
       </Navbar>
+      <Jumbotron className={styles.jumbotron}>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <h1 className={styles.title}>Restorante Con Fusion</h1>
+              <p className={styles.desc}>
+                We take inspiration from the World&apos;s best cuisines, and
+                create a unique fusion experience. Our lipsmacking creations
+                will tickle your culinary senses!
+              </p>
+            </div>
+          </div>
+        </div>
+      </Jumbotron>
     </header>
   );
 };

@@ -5,3 +5,18 @@
 .navbar {
   background-color: #512da8;
 }
+
+.jumbotron {
+  padding: 70px 30px;
+  margin: 0px auto;
+  background: #9575cd;
+  color: floralwhite;
+}
+
+.desc {
+  font-size: 14px;
+}
+
+.title {
+  font-size: 30px;
+}
