@@ -11,18 +11,10 @@ const App = () => {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/aboutus">
-          <AboutUs />
-        </Route>
-        <Route path="/menu">
-          <Menu />
-        </Route>
-        <Route path="/contacts">
-          <Contacts />
-        </Route>
+        <Route path="/home" component={Home} />
+        <Route path="/aboutus" component={AboutUs} />
+        <Route path="/menu" component={Menu} />
+        <Route path="/contacts" component={Contacts} />
       </Switch>
     </div>
   );

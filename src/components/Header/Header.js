@@ -1,5 +1,12 @@
 import { Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import {
+  faHome,
+  faInfo,
+  faList,
+  faAddressCard,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import logo from 'assets/images/logo.png';
 import styles from './Header.module.css';
@@ -14,23 +21,23 @@ const Header = () => {
               <img className={styles.logo} src={logo} alt="Confusion" />
             </NavbarBrand>
             <NavItem>
-              <NavLink className="nav-link" to="/">
-                Home
+              <NavLink className="nav-link" to="/home">
+                <FontAwesomeIcon icon={faHome} size="md" /> Home
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/aboutus">
-                About Us
+                <FontAwesomeIcon icon={faInfo} size="md" /> About Us
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/menu">
-                Menu
+                <FontAwesomeIcon icon={faList} size="md" /> Menu
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/contacts">
-                Contact Us
+                <FontAwesomeIcon icon={faAddressCard} size="md" /> Contact Us
               </NavLink>
             </NavItem>
           </Nav>
