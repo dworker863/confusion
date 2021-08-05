@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="container pt-1 pb-1">
       <div className="row">
-        <div className="col-4 d-flex align-items-stretch">
+        <div className="col-12 col-lg-4 d-flex align-items-stretch">
           {dishForRender && (
             <CardComponent
               size="100%"
@@ -21,7 +21,7 @@ const Home = () => {
             />
           )}
         </div>
-        <div className="col-4 d-flex align-items-stretch">
+        <div className="col-12 col-lg-4 d-flex align-items-stretch">
           {promoForRender && (
             <CardComponent
               size="100%"
@@ -31,7 +31,7 @@ const Home = () => {
             />
           )}
         </div>
-        <div className="col-4 d-flex align-items-stretch">
+        <div className="col-12 col-lg-4 d-flex align-items-stretch">
           {leaderForRender && (
             <CardComponent
               size="100%"
