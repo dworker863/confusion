@@ -50,40 +50,42 @@ const Footer = () => {
               <br />
             </address>
           </div>
-          <div className="col-3 offset-1">
-            <a
-              className="btn btn-social-icon btn-google"
-              href="http://google.com/+"
-            >
-              <FontAwesomeIcon icon={['fab', 'google-plus-g']} />
-            </a>
-            <a
-              className="btn btn-social-icon btn-facebook"
-              href="http://www.facebook.com/profile.php?id="
-            >
-              <FontAwesomeIcon icon={['fab', 'facebook']} />
-            </a>
-            <a
-              className="btn btn-social-icon btn-twitter"
-              href="http://twitter.com/"
-            >
-              <FontAwesomeIcon icon={['fab', 'twitter']} />
-            </a>
-            <a
-              className="btn btn-social-icon btn-linkedin"
-              href="http://www.linkedin.com/in/"
-            >
-              <FontAwesomeIcon icon={['fab', 'linkedin']} />
-            </a>
-            <a
-              className="btn btn-social-icon btn-google"
-              href="http://youtube.com/"
-            >
-              <FontAwesomeIcon icon={['fab', 'youtube']} />
-            </a>
-            <a className="btn btn-social-icon" href="mailto:">
-              <FontAwesomeIcon icon={faEnvelopeOpen} />
-            </a>
+          <div className="col-12 col-sm-3 offset-sm-1">
+            <div className="text-center">
+              <a
+                className="btn btn-social-icon btn-google"
+                href="http://google.com/+"
+              >
+                <FontAwesomeIcon icon={['fab', 'google-plus-g']} />
+              </a>
+              <a
+                className="btn btn-social-icon btn-facebook"
+                href="http://www.facebook.com/profile.php?id="
+              >
+                <FontAwesomeIcon icon={['fab', 'facebook']} />
+              </a>
+              <a
+                className="btn btn-social-icon btn-twitter"
+                href="http://twitter.com/"
+              >
+                <FontAwesomeIcon icon={['fab', 'twitter']} />
+              </a>
+              <a
+                className="btn btn-social-icon btn-linkedin"
+                href="http://www.linkedin.com/in/"
+              >
+                <FontAwesomeIcon icon={['fab', 'linkedin']} />
+              </a>
+              <a
+                className="btn btn-social-icon btn-google"
+                href="http://youtube.com/"
+              >
+                <FontAwesomeIcon icon={['fab', 'youtube']} />
+              </a>
+              <a className="btn btn-social-icon" href="mailto:">
+                <FontAwesomeIcon icon={faEnvelopeOpen} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
