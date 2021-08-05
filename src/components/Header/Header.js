@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import {
   Button,
+  Collapse,
   Jumbotron,
   Nav,
   Navbar,
   NavbarBrand,
+  NavbarToggler,
   NavItem,
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
@@ -20,36 +23,45 @@ import logo from 'assets/images/logo.png';
 import styles from './Header.module.css';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
   return (
     <header>
       <Navbar className={styles.navbar} dark expand="md">
         <div className="container">
-          <Nav className="mr-auto" navbar>
-            <NavbarBrand href="/">
-              <img className={styles.logo} src={logo} alt="Confusion" />
-            </NavbarBrand>
-            <NavItem>
-              <NavLink className="nav-link" to="/home">
-                <FontAwesomeIcon icon={faHome} size="md" /> Home
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="nav-link" to="/aboutus">
-                <FontAwesomeIcon icon={faInfo} size="md" /> About Us
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="nav-link" to="/menu">
-                <FontAwesomeIcon icon={faList} size="md" /> Menu
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="nav-link" to="/contacts">
-                <FontAwesomeIcon icon={faAddressCard} size="md" /> Contact Us
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <Nav className="ml-auto" navbar>
+          <NavbarToggler onClick={toggle} />
+          <NavbarBrand href="/">
+            <img className={styles.logo} src={logo} alt="Confusion" />
+          </NavbarBrand>
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink className="nav-link" to="/home">
+                  <FontAwesomeIcon icon={faHome} size="md" /> Home
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" to="/aboutus">
+                  <FontAwesomeIcon icon={faInfo} size="md" /> About Us
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" to="/menu">
+                  <FontAwesomeIcon icon={faList} size="md" /> Menu
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" to="/contacts">
+                  <FontAwesomeIcon icon={faAddressCard} size="md" /> Contact Us
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+          <Nav className="ml-auto d-md-none" navbar>
             <NavItem>
               <NavLink className="nav-link" to="/login">
                 <Button outline color="secondary" className="ml-auto">
