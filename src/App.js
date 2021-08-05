@@ -5,6 +5,7 @@ import Contacts from 'components/Contacts/Contacts';
 import Header from 'components/Header/Header';
 import Home from 'components/Home/Home';
 import Menu from 'components/Menu/Menu';
+import Footer from 'components/Footer/Footer';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/menu" component={Menu} />
         <Route path="/contacts" component={Contacts} />
       </Switch>
+      <Footer />
     </div>
   );
 };
