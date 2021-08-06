@@ -19,7 +19,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import logo from 'assets/images/logo.png';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -35,7 +34,11 @@ const Header = () => {
         <div className="container">
           <NavbarToggler onClick={toggle} />
           <NavbarBrand href="/">
-            <img className={styles.logo} src={logo} alt="Confusion" />
+            <img
+              className={styles.logo}
+              src="images/logo.png"
+              alt="Confusion"
+            />
           </NavbarBrand>
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
