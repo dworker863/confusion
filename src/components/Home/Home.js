@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="container pt-1 pb-1">
       <div className="row">
-        <div className="col-4">
+        <div className="col-4 d-flex align-items-stretch">
           {dishForRender && (
             <CardComponent
               img={dishForRender.image}
@@ -33,7 +33,7 @@ const Home = () => {
             />
           )}
         </div>
-        <div className="col-4">
+        <div className="col-4 d-flex align-items-stretch">
           {promoForRender && (
             <CardComponent
               img={promoForRender.image}
@@ -42,7 +42,7 @@ const Home = () => {
             />
           )}
         </div>
-        <div className="col-4">
+        <div className="col-4 d-flex align-items-stretch">
           {leaderForRender && (
             <CardComponent
               img={leaderForRender.image}
