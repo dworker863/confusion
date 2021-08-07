@@ -32,7 +32,7 @@ const AboutUs = () => {
       </div>
       <main className={styles.content}>
         <div className="row">
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <h2>Our History</h2>
             <p>
               Started in 2010, Ristorante con Fusion quickly established itself
@@ -48,7 +48,7 @@ const AboutUs = () => {
               for the first time the world&apos;s best cuisines in a pan.
             </p>
           </div>
-          <div className="col-4">
+          <div className="col-12 col-md-5">
             <Card>
               <CardHeader className="bg-primary text-white">
                 Facts At a Glance
