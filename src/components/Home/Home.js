@@ -1,21 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getDishes } from 'redux/reducers/dishes';
-import { getPromotions } from 'redux/reducers/promotions';
-import { getLeaders } from 'redux/reducers/leaders';
+import { useSelector } from 'react-redux';
 
 import CardComponent from 'components/common/Card';
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getDishes());
-    dispatch(getPromotions());
-    dispatch(getLeaders());
-  }, [dispatch]);
-
   const { dishes, promotions, leaders } = useSelector((state) => state);
   const [dishForRender] = dishes.filter((dish) => dish.featured);
   const [promoForRender] = promotions.filter((promo) => promo.featured);
@@ -27,6 +14,7 @@ const Home = () => {
         <div className="col-4 d-flex align-items-stretch">
           {dishForRender && (
             <CardComponent
+              size="100%"
               img={dishForRender.image}
               name={dishForRender.name}
               description={dishForRender.description}
@@ -36,6 +24,7 @@ const Home = () => {
         <div className="col-4 d-flex align-items-stretch">
           {promoForRender && (
             <CardComponent
+              size="100%"
               img={promoForRender.image}
               name={promoForRender.name}
               description={promoForRender.description}
@@ -45,6 +34,7 @@ const Home = () => {
         <div className="col-4 d-flex align-items-stretch">
           {leaderForRender && (
             <CardComponent
+              size="100%"
               img={leaderForRender.image}
               name={leaderForRender.name}
               description={leaderForRender.description}

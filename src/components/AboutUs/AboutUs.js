@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   BreadcrumbItem,
@@ -5,11 +6,16 @@ import {
   Card,
   CardHeader,
   CardBody,
+  Media,
 } from 'reactstrap';
+
+import MediaComponent from 'components/common/Media';
 
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
+  const { leaders } = useSelector((state) => state);
+
   return (
     <div className="container">
       <div className={`row ${styles.rowStyle}`}>
@@ -63,6 +69,20 @@ const AboutUs = () => {
           </div>
         </div>
       </main>
+      <div className={styles.content}>
+        <h2>Corporate Leadership</h2>
+        <Media tag="list">
+          {leaders.map((leader) => (
+            <MediaComponent
+              key={leader.id}
+              img={leader.image}
+              name={leader.name}
+              designation={leader.designation}
+              description={leader.description}
+            />
+          ))}
+        </Media>
+      </div>
     </div>
   );
 };
