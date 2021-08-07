@@ -67,6 +67,27 @@ const AboutUs = () => {
               </CardBody>
             </Card>
           </div>
+          <div className="col-12">
+            <Card>
+              <CardBody>
+                <figure>
+                  <blockquote className="blockquote">
+                    <p>
+                      You better cut the pizza in four pieces because I&apos;m
+                      not hungry enough to eat six.
+                    </p>
+                  </blockquote>
+                  <figcaption className="blockquote-footer">
+                    Yogi Berra,
+                    <cite title="Source Title">
+                      The Wit and Wisdom of Yogi Berra, P. Pepe, Diversion
+                      Books, 2014
+                    </cite>
+                  </figcaption>
+                </figure>
+              </CardBody>
+            </Card>
+          </div>
         </div>
       </main>
       <div className={styles.content}>
