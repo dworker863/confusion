@@ -75,10 +75,10 @@ const Contacts = () => {
       >
         <Form>
           <div className="row">
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <label htmlFor="firstName">First Name</label>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <Field name="firstName" type="text" placeholder="First Name" />
             </div>
             <ErrorMessage name="firstName">
@@ -89,10 +89,10 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <label htmlFor="lastName">Last Name</label>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <Field name="lastName" type="text" placeholder="Last Name" />
             </div>
             <ErrorMessage name="lastName">
@@ -103,10 +103,10 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <label htmlFor="tel">Contact Tel.</label>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <Field name="tel" type="text" placeholder="7 123 456 78 90" />
             </div>
             <ErrorMessage name="tel">
@@ -117,10 +117,10 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <label htmlFor="email">Email</label>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <Field name="email" type="email" placeholder="Email" />
             </div>
             <ErrorMessage name="email">
@@ -131,13 +131,13 @@ const Contacts = () => {
           </div>
 
           <div className="row justify-content-start">
-            <div className="col-3 offset-2">
+            <div className="col-12 col-md-4 offset-md-2">
               <Field name="agree" type="checkbox" className={styles.agree} />
               <label htmlFor="lastName">
                 <strong>May we contact you?</strong>
               </label>
             </div>
-            <div className="col-3">
+            <div className="col-12 col-md-2">
               <Field name="lastName" as="select">
                 <option>Tel.</option>
                 <option>Email</option>
@@ -146,10 +146,10 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-2">
+            <div className="col-12 col-md-2">
               <label htmlFor="feedback">Your Feedback</label>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <Field
                 name="feedback"
                 as="textarea"
@@ -165,9 +165,9 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-3 offset-2">
+            <div className="col-12 col-md-3 offset-md-2">
               <Button type="submit" color="primary">
-                Submit
+                Send Feedback
               </Button>
             </div>
           </div>
