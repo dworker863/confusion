@@ -1,13 +1,9 @@
-import {
-  faEnvelope,
-  faEnvelopeOpen,
-  faFax,
-  faPhone,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { NavLink } from 'react-router-dom';
+import Adress from 'components/common/Address/Address';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -33,22 +29,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-5">
-            <h5>Our Address</h5>
-            <address>
-              121, Clear Water Bay Road
-              <br />
-              Clear Water Bay, Kowloon
-              <br />
-              HONG KONG
-              <br />
-              <FontAwesomeIcon icon={faPhone} /> +852 1234 5678
-              <br />
-              <FontAwesomeIcon icon={faFax} /> +852 8765 4321
-              <br />
-              <FontAwesomeIcon icon={faEnvelope} />{' '}
-              <a href="mailto:confusion@food.net">confusion@food.net</a>
-              <br />
-            </address>
+            <Adress />
           </div>
           <div className="col-12 col-sm-3 offset-sm-1">
             <div className="text-center">

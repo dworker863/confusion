@@ -1,0 +1,13 @@
+.formTitle {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+input,
+select {
+  margin-bottom: 10px;
+}
+
+textarea {
+  margin-bottom: 20px;
+}
