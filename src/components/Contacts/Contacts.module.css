@@ -4,10 +4,29 @@
 }
 
 input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+input,
 select {
   margin-bottom: 10px;
 }
 
+input {
+  padding: 5px 10px;
+}
+
 textarea {
   margin-bottom: 20px;
+  padding: 5px 10px;
+}
+
+.agree {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px;
 }

@@ -1,4 +1,6 @@
-import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import { Button } from 'reactstrap';
 
 import Adress from 'components/common/Address/Address';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
@@ -22,74 +24,109 @@ const Contacts = () => {
       </div>
       <hr />
       <h3 className={styles.formTitle}>Send us your feedback</h3>
-      <Form>
-        <FormGroup row>
-          <Label md={1}>First Name</Label>
-          <Col md={6}>
-            <Input
-              type="text"
-              name="firstName"
-              id="firstName"
-              placeholder="First Name"
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label md={1}>Last Name</Label>
-          <Col md={6}>
-            <Input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label md={1}>Email</Label>
-          <Col md={6}>
-            <Input type="email" name="email" id="email" placeholder="Email " />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Col md={{ size: 2, offset: 1 }}>
-            <Input type="checkbox" name="agree" id="agree" />
-            <strong> May we contact you?</strong>
-          </Col>
-          <Col md={{ size: 3, offset: 1 }}>
-            <Input type="select" name="contactType" id="contactType">
-              <option>Tel.</option>
-              <option>Email</option>
-            </Input>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label md={1}>Contact Tel.</Label>
-          <Col md={6}>
-            <Input
-              type="text"
-              name="telNum"
-              id="telNum"
-              placeholder="Tel. Number"
-            />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label md={1}>Your Feedback</Label>
-          <Col md={6}>
-            <Input
-              type="textarea"
-              name="lastName"
-              id="lastName"
-              placeholder="Message"
-              rows="12"
-            />
-          </Col>
-        </FormGroup>
-        <Col md={{ offset: 1 }}>
-          <Button color="primary">Send Feedback</Button>
-        </Col>
-      </Form>
+      <Formik
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          tel: '',
+          email: '',
+          agree: false,
+          contactType: 'Tel.',
+          feedback: '',
+        }}
+        validationSchema={Yup.object({
+          firstName: Yup.string().required('Required'),
+          lastName: Yup.string().required('Required'),
+          tel: Yup.number().min(10, 'Please enter a valid phone number'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+        })}
+        onSubmit={(values) => {
+          // eslint-disable-next-line no-alert
+          alert(JSON.stringify(values, 2, null));
+        }}
+      >
+        <Form>
+          <div className="row">
+            <div className="col-2">
+              <label htmlFor="firstName">First Name</label>
+            </div>
+            <div className="col-6">
+              <Field name="firstName" type="text" placeholder="First Name" />
+            </div>
+            <ErrorMessage name="firstName" />
+          </div>
+
+          <div className="row">
+            <div className="col-2">
+              <label htmlFor="lastName">Last Name</label>
+            </div>
+            <div className="col-6">
+              <Field name="lastName" type="text" placeholder="Last Name" />
+            </div>
+            <ErrorMessage name="lastName" />
+          </div>
+
+          <div className="row">
+            <div className="col-2">
+              <label htmlFor="tel">Contact Tel.</label>
+            </div>
+            <div className="col-6">
+              <Field name="tel" type="text" placeholder="7 123 456 78 90" />
+            </div>
+            <ErrorMessage name="tel" />
+          </div>
+
+          <div className="row">
+            <div className="col-2">
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="col-6">
+              <Field name="email" type="email" placeholder="Email" />
+            </div>
+            <ErrorMessage name="email" />
+          </div>
+
+          <div className="row justify-content-start">
+            <div className="col-3 offset-2">
+              <Field name="agree" type="checkbox" className={styles.agree} />
+              <label htmlFor="lastName">
+                <strong>May we contact you?</strong>
+              </label>
+            </div>
+            <div className="col-3">
+              <Field name="lastName" as="select">
+                <option>Tel.</option>
+                <option>Email</option>
+              </Field>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-2">
+              <label htmlFor="feedback">Your Feedback</label>
+            </div>
+            <div className="col-6">
+              <Field
+                name="feedback"
+                as="textarea"
+                rows={12}
+                placeholder="Message"
+              />
+            </div>
+            <ErrorMessage name="feedback" />
+          </div>
+
+          <div className="row">
+            <div className="col-3 offset-2">
+              <Button type="submit" color="primary">
+                Submit
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </Formik>
     </div>
   );
 };
