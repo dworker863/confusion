@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import * as Yup from 'yup';
 import {
   Button,
   Collapse,
   Jumbotron,
+  Modal,
+  ModalBody,
+  ModalHeader,
   Nav,
   Navbar,
   NavbarBrand,
@@ -18,15 +22,28 @@ import {
   faSignInAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Field, Form, Formik } from 'formik';
 
 import styles from './Header.module.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => setModal(!modal);
 
   const toggle = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
+
+  const closeBtn = (
+    <button
+      type="button"
+      className="btn-close"
+      aria-label="Close"
+      onClick={toggleModal}
+    />
+  );
 
   return (
     <header>
@@ -66,11 +83,14 @@ const Header = () => {
           </Collapse>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link" to="/login">
-                <Button outline color="secondary" className="ml-auto">
-                  <FontAwesomeIcon icon={faSignInAlt} size="md" /> Login
-                </Button>
-              </NavLink>
+              <Button
+                outline
+                color="secondary"
+                className="ml-auto"
+                onClick={toggleModal}
+              >
+                <FontAwesomeIcon icon={faSignInAlt} size="md" /> Login
+              </Button>
             </NavItem>
           </Nav>
         </div>
@@ -89,6 +109,50 @@ const Header = () => {
           </div>
         </div>
       </Jumbotron>
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal} close={closeBtn}>
+          Login
+        </ModalHeader>
+        <ModalBody>
+          <Formik
+            initialValues={{
+              username: '',
+              password: '',
+              remember: false,
+            }}
+            validationSchema={Yup.object({
+              username: Yup.string().required('Required'),
+              password: Yup.string()
+                .min(5, 'Password must be more than 5 characters')
+                .required('Required'),
+            })}
+            onSubmit={(values) => {
+              // eslint-disable-next-line no-alert
+              alert(JSON.stringify(values, 2, null));
+            }}
+          >
+            <Form>
+              <label htmlFor="username">Username</label>
+              <Field type="text" name="username" />
+              <label htmlFor="password">Password</label>
+              <Field type="password" name="password" />
+              <div className="row">
+                <div className="col-12">
+                  <Field
+                    type="checkbox"
+                    name="remember"
+                    className={styles.remember}
+                  />
+                  <label htmlFor="remember">Remember Me</label>
+                </div>
+              </div>
+              <Button type="submit" color="primary">
+                Login
+              </Button>
+            </Form>
+          </Formik>
+        </ModalBody>
+      </Modal>
     </header>
   );
 };

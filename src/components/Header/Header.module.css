@@ -20,3 +20,9 @@
 .title {
   font-size: 30px;
 }
+
+.remember {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
