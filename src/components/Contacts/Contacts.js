@@ -37,7 +37,7 @@ const Contacts = () => {
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
           lastName: Yup.string().required('Required'),
-          tel: Yup.number().min(10, 'Please enter a valid phone number'),
+          tel: Yup.string().max(10, 'Please enter a valid phone number'),
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
@@ -55,7 +55,11 @@ const Contacts = () => {
             <div className="col-6">
               <Field name="firstName" type="text" placeholder="First Name" />
             </div>
-            <ErrorMessage name="firstName" />
+            <ErrorMessage name="firstName">
+              {(msg) => (
+                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
+              )}
+            </ErrorMessage>
           </div>
 
           <div className="row">
@@ -65,7 +69,11 @@ const Contacts = () => {
             <div className="col-6">
               <Field name="lastName" type="text" placeholder="Last Name" />
             </div>
-            <ErrorMessage name="lastName" />
+            <ErrorMessage name="lastName">
+              {(msg) => (
+                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
+              )}
+            </ErrorMessage>
           </div>
 
           <div className="row">
@@ -75,7 +83,11 @@ const Contacts = () => {
             <div className="col-6">
               <Field name="tel" type="text" placeholder="7 123 456 78 90" />
             </div>
-            <ErrorMessage name="tel" />
+            <ErrorMessage name="tel">
+              {(msg) => (
+                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
+              )}
+            </ErrorMessage>
           </div>
 
           <div className="row">
@@ -85,7 +97,11 @@ const Contacts = () => {
             <div className="col-6">
               <Field name="email" type="email" placeholder="Email" />
             </div>
-            <ErrorMessage name="email" />
+            <ErrorMessage name="email">
+              {(msg) => (
+                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
+              )}
+            </ErrorMessage>
           </div>
 
           <div className="row justify-content-start">
@@ -115,7 +131,11 @@ const Contacts = () => {
                 placeholder="Message"
               />
             </div>
-            <ErrorMessage name="feedback" />
+            <ErrorMessage name="feedback">
+              {(msg) => (
+                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
+              )}
+            </ErrorMessage>
           </div>
 
           <div className="row">
