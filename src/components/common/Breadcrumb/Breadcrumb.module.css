@@ -1,0 +1,16 @@
+.breadCrumb {
+  background-color: #e9ecef;
+  padding-top: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+}
+
+.rowStyle > nav {
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.breadCrumb a {
+  text-decoration: none;
+}

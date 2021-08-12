@@ -1,16 +1,9 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import {
-  BreadcrumbItem,
-  Breadcrumb,
-  Card,
-  CardHeader,
-  CardBody,
-  Media,
-} from 'reactstrap';
+import { Card, CardHeader, CardBody, Media } from 'reactstrap';
 
 import MediaComponent from 'components/common/Media';
 
+import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
@@ -18,18 +11,7 @@ const AboutUs = () => {
 
   return (
     <div className="container">
-      <div className={`row ${styles.rowStyle}`}>
-        <Breadcrumb className={styles.breadCrumb}>
-          <BreadcrumbItem>
-            <Link to="/home">Home</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem active>About Us</BreadcrumbItem>
-        </Breadcrumb>
-        <div className="col-12">
-          <h3>About Us</h3>
-          <hr />
-        </div>
-      </div>
+      <BreadcrumbComponent title="About Us" />
       <main className={styles.content}>
         <div className="row">
           <div className="col-12 col-md-6">
