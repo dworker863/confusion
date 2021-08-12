@@ -1,4 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSkype } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import * as Yup from 'yup';
 import { Button } from 'reactstrap';
 
@@ -15,11 +18,34 @@ const Contacts = () => {
         <div className="col-12 mb-4">
           <h3>Location Information</h3>
         </div>
-        <div className="col-5 offset-1">
+        <div className="col-5 offset-sm-1">
           <Adress />
         </div>
-        <div className="col-5">
+        <div className="col-sm-5 d-none d-sm-block">
           <h5>Map of our Location</h5>
+        </div>
+        <div className="row">
+          <div className="col-9 col-md-5 offset-sm-1 mt-4">
+            <div className="btn-group">
+              <a
+                role="button"
+                className="btn btn-primary"
+                href="tel:+85212345678"
+              >
+                <FontAwesomeIcon icon={faPhone} /> Call
+              </a>
+              <a role="button" className="btn btn-info" href="">
+                <FontAwesomeIcon icon={faSkype} /> Skype
+              </a>
+              <a
+                role="button"
+                className="btn btn-success"
+                href="mailto:dworker863@gmail.com"
+              >
+                <FontAwesomeIcon icon={faEnvelope} /> Email
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <hr />

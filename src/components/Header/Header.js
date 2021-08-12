@@ -64,7 +64,7 @@ const Header = () => {
               </NavItem>
             </Nav>
           </Collapse>
-          <Nav className="ml-auto d-md-none" navbar>
+          <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink className="nav-link" to="/login">
                 <Button outline color="secondary" className="ml-auto">
