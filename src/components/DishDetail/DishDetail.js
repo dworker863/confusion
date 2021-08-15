@@ -1,13 +1,30 @@
 /* eslint-disable operator-linebreak */
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CommentForm from 'components/CommentForm';
 import CardComponent from 'components/common/Card';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 const DishDetail = ({ dishes }) => {
+  const [modal, setModal] = useState(false);
   const { id } = useParams();
   const [dish] = dishes.filter((item) => item._id === id);
 
+  const toggleModal = () => setModal(!modal);
+
+  const closeBtn = (
+    <button
+      type="button"
+      className="btn-close"
+      aria-label="Close"
+      onClick={toggleModal}
+    />
+  );
+
   return (
-    <div className="container">
+    <div className="container pt-5 pb-5">
       <div className="row">
         <div className="col-6">
           {dish && (
@@ -36,6 +53,17 @@ const DishDetail = ({ dishes }) => {
                 </p>
               </div>
             ))}
+          <Button outline onClick={toggleModal}>
+            <FontAwesomeIcon icon={faPencilAlt} /> Submit Comment
+          </Button>
+          <Modal isOpen={modal} toggle={toggleModal}>
+            <ModalHeader toggle={toggleModal} close={closeBtn}>
+              Submit Comment
+            </ModalHeader>
+            <ModalBody>
+              <CommentForm />
+            </ModalBody>
+          </Modal>
         </div>
       </div>
     </div>

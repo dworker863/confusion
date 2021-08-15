@@ -82,9 +82,7 @@ const Contacts = () => {
               <Field name="firstName" type="text" placeholder="First Name" />
             </div>
             <ErrorMessage name="firstName">
-              {(msg) => (
-                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
-              )}
+              {(msg) => <div className="offset-md-2 errorMsg">{msg}</div>}
             </ErrorMessage>
           </div>
 
@@ -96,9 +94,7 @@ const Contacts = () => {
               <Field name="lastName" type="text" placeholder="Last Name" />
             </div>
             <ErrorMessage name="lastName">
-              {(msg) => (
-                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
-              )}
+              {(msg) => <div className="offset-md-2 errorMsg">{msg}</div>}
             </ErrorMessage>
           </div>
 
@@ -110,9 +106,7 @@ const Contacts = () => {
               <Field name="tel" type="text" placeholder="7 123 456 78 90" />
             </div>
             <ErrorMessage name="tel">
-              {(msg) => (
-                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
-              )}
+              {(msg) => <div className="offset-md-2 errorMsg">{msg}</div>}
             </ErrorMessage>
           </div>
 
@@ -124,9 +118,7 @@ const Contacts = () => {
               <Field name="email" type="email" placeholder="Email" />
             </div>
             <ErrorMessage name="email">
-              {(msg) => (
-                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
-              )}
+              {(msg) => <div className="offset-md-2 errorMsg">{msg}</div>}
             </ErrorMessage>
           </div>
 
@@ -158,9 +150,7 @@ const Contacts = () => {
               />
             </div>
             <ErrorMessage name="feedback">
-              {(msg) => (
-                <div className={`offset-2 ${styles.errorMsg}`}>{msg}</div>
-              )}
+              {(msg) => <div className="offset-md-2 errorMsg">{msg}</div>}
             </ErrorMessage>
           </div>
 
