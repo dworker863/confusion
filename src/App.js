@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
@@ -13,8 +13,11 @@ import Header from 'components/Header/Header';
 import Home from 'components/Home/Home';
 import Menu from 'components/Menu/Menu';
 import Footer from 'components/Footer/Footer';
+import DishDetail from 'components/DishDetail/DishDetail';
 
 const App = () => {
+  const { dishes, promotions, leaders } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,10 +30,16 @@ const App = () => {
     <div>
       <Header />
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route
+          path="/home"
+          render={() => (
+            <Home dishes={dishes} promotions={promotions} leaders={leaders} />
+          )}
+        />
         <Route path="/aboutus" component={AboutUs} />
-        <Route path="/menu" component={Menu} />
+        <Route exact path="/menu" component={Menu} />
         <Route path="/contacts" component={Contacts} />
+        <Route path="/menu/:id" render={() => <DishDetail dishes={dishes} />} />
         <Redirect to="/home" />
       </Switch>
       <Footer />

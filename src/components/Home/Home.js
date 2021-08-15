@@ -1,9 +1,6 @@
-import { useSelector } from 'react-redux';
-
 import CardComponent from 'components/common/Card';
 
-const Home = () => {
-  const { dishes, promotions, leaders } = useSelector((state) => state);
+const Home = ({ dishes, promotions, leaders }) => {
   const [dishForRender] = dishes.filter((dish) => dish.featured);
   const [promoForRender] = promotions.filter((promo) => promo.featured);
   const [leaderForRender] = leaders.filter((leader) => leader.featured);

@@ -13,9 +13,9 @@ const Menu = () => {
       <BreadcrumbComponent title="Menu" />
       <div className="row">
         {dishes.map((dish) => (
-          <div key={dish.id} className="col-12 col-md-5">
+          <div key={dish._id} className="col-12 col-md-5">
             <Card className="m-1 fw-normal">
-              <NavLink to="/home" className={styles.link}>
+              <NavLink to={`/menu/${dish._id}`} className={styles.link}>
                 <CardImg src={dish.image} alt={dish.image} />
                 <CardImgOverlay>
                   <CardTitle>{dish.name}</CardTitle>
