@@ -1,18 +1,33 @@
 import axios from 'axios';
 
-const instance = axios.create({
-  baseURL: 'https://localhost:3443/',
-});
+let token = null;
+const baseURL = 'https://localhost:3443/';
 
-// eslint-disable-next-line import/prefer-default-export
 export const dishesAPI = () => {
-  return instance.get('dishes').then((response) => response.data);
+  return axios.get(`${baseURL}dishes`).then((response) => response.data);
 };
 
 export const promotionsAPI = () => {
-  return instance.get('promotions').then((response) => response.data);
+  return axios.get(`${baseURL}promotions`).then((response) => response.data);
 };
 
 export const leadersAPI = () => {
-  return instance.get('leaders').then((response) => response.data);
+  return axios.get(`${baseURL}leaders`).then((response) => response.data);
+};
+
+export const login = (username, password) => {
+  return axios
+    .post(`${baseURL}users/login`, { username, password })
+    .then((response) => {
+      token = response.data.token;
+      return response.data;
+    });
+};
+
+export const logout = () => {
+  return axios
+    .get('https://localhost:3443/users/logout', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => response.data);
 };

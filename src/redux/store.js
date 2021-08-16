@@ -4,11 +4,13 @@ import thunkMidlleware from 'redux-thunk';
 import dishes from './reducers/dishes';
 import promotions from './reducers/promotions';
 import leaders from './reducers/leaders';
+import auth from './reducers/auth';
 
 const reducers = combineReducers({
   dishes,
   promotions,
   leaders,
+  auth,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

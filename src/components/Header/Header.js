@@ -22,11 +22,11 @@ import {
   faSignInAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = ({ login, logout, username }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -83,14 +83,28 @@ const Header = () => {
           </Collapse>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <Button
-                outline
-                color="secondary"
-                className="ml-auto"
-                onClick={toggleModal}
-              >
-                <FontAwesomeIcon icon={faSignInAlt} size="md" /> Login
-              </Button>
+              {username && (
+                <span className={styles.userInfo}>Welcome, {username}! </span>
+              )}
+              {username ? (
+                <Button
+                  outline
+                  color="secondary"
+                  className="ml-auto"
+                  onClick={logout}
+                >
+                  <FontAwesomeIcon icon={faSignInAlt} size="md" /> Logout
+                </Button>
+              ) : (
+                <Button
+                  outline
+                  color="secondary"
+                  className="ml-auto"
+                  onClick={toggleModal}
+                >
+                  <FontAwesomeIcon icon={faSignInAlt} size="md" /> Login
+                </Button>
+              )}
             </NavItem>
           </Nav>
         </div>
@@ -123,19 +137,26 @@ const Header = () => {
             validationSchema={Yup.object({
               username: Yup.string().required('Required'),
               password: Yup.string()
-                .min(5, 'Password must be more than 5 characters')
+                .min(4, 'Password must be more than 3 characters')
                 .required('Required'),
             })}
-            onSubmit={(values) => {
-              // eslint-disable-next-line no-alert
-              alert(JSON.stringify(values, 2, null));
+            onSubmit={(values, { setSubmitting }) => {
+              login(values.username, values.password);
+              setSubmitting(false);
+              toggleModal();
             }}
           >
             <Form>
               <label htmlFor="username">Username</label>
               <Field type="text" name="username" />
+              <ErrorMessage name="username">
+                {(msg) => <div className="errorMsg">{msg}</div>}
+              </ErrorMessage>
               <label htmlFor="password">Password</label>
               <Field type="password" name="password" />
+              <ErrorMessage name="password">
+                {(msg) => <div className="errorMsg">{msg}</div>}
+              </ErrorMessage>
               <div className="row">
                 <div className="col-12">
                   <Field

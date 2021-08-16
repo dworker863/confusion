@@ -8,12 +8,12 @@ const CommentForm = () => {
       <Formik
         initialValues={{
           rating: 1,
-          name: '',
+          author: '',
           comment: '',
         }}
         validationSchema={Yup.object({
           rating: Yup.number().required('Required'),
-          name: Yup.string().required('Required'),
+          author: Yup.string().required('Required'),
           comment: Yup.string().required('Required'),
         })}
         onSubmit={(values) => {
@@ -36,8 +36,8 @@ const CommentForm = () => {
           <label htmlFor="name" placeholder="Your Name">
             Your Name
           </label>
-          <Field type="text" name="name" />
-          <ErrorMessage name="name">
+          <Field type="text" name="author" />
+          <ErrorMessage name="author">
             {(msg) => <div className="errorMsg">{msg}</div>}
           </ErrorMessage>
           <label htmlFor="comment">Comment</label>
