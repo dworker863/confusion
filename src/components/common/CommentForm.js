@@ -2,7 +2,7 @@ import { Button } from 'reactstrap';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-const CommentForm = () => {
+const CommentForm = ({ fetchComment }) => {
   return (
     <div>
       <Formik
@@ -16,9 +16,9 @@ const CommentForm = () => {
           author: Yup.string().required('Required'),
           comment: Yup.string().required('Required'),
         })}
-        onSubmit={(values) => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={(values, { setSubmitting }) => {
+          fetchComment(values);
+          setSubmitting(false);
         }}
       >
         <Form>

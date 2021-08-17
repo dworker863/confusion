@@ -3,15 +3,15 @@ import axios from 'axios';
 let token = null;
 const baseURL = 'https://localhost:3443/';
 
-export const dishesAPI = () => {
+export const fetchDishes = () => {
   return axios.get(`${baseURL}dishes`).then((response) => response.data);
 };
 
-export const promotionsAPI = () => {
+export const fetchPromotions = () => {
   return axios.get(`${baseURL}promotions`).then((response) => response.data);
 };
 
-export const leadersAPI = () => {
+export const fetchLeaders = () => {
   return axios.get(`${baseURL}leaders`).then((response) => response.data);
 };
 
@@ -26,7 +26,15 @@ export const login = (username, password) => {
 
 export const logout = () => {
   return axios
-    .get('https://localhost:3443/users/logout', {
+    .get(`${baseURL}users/logout`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => response.data);
+};
+
+export const postComment = (comment, dishId) => {
+  return axios
+    .post(`${baseURL}dishes/${dishId}/comments`, comment, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => response.data);

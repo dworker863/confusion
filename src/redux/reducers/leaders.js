@@ -1,4 +1,4 @@
-import { leadersAPI } from 'api/api';
+import { fetchLeaders } from 'api/api';
 
 const SET_LEADERS = 'confusion/leaders/SET_LEADERS';
 
@@ -20,7 +20,7 @@ export const setLeaders = (leaders) => ({
 });
 
 export const getLeaders = () => (dispatch) => {
-  leadersAPI().then((leaders) => {
+  fetchLeaders().then((leaders) => {
     dispatch(setLeaders(leaders));
   });
 };

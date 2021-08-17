@@ -53,7 +53,7 @@ const Header = ({ login, logout, username }) => {
           <NavbarBrand href="/">
             <img
               className={styles.logo}
-              src="images/logo.png"
+              src="/images/logo.png"
               alt="Confusion"
             />
           </NavbarBrand>

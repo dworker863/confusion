@@ -1,4 +1,4 @@
-import { promotionsAPI } from 'api/api';
+import { fetchPromotions } from 'api/api';
 
 const SET_PROMOTIONS = 'confusion/promotions/SET_PROMOTIONS';
 
@@ -20,7 +20,7 @@ export const setPromotions = (promotions) => ({
 });
 
 export const getPromotions = () => (dispatch) => {
-  promotionsAPI().then((promotions) => {
+  fetchPromotions().then((promotions) => {
     dispatch(setPromotions(promotions));
   });
 };

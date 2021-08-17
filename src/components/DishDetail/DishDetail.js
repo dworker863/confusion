@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { useDispatch } from 'react-redux';
 
 import CommentForm from 'components/common/CommentForm';
 import CardComponent from 'components/common/Card';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
+import { addComment } from 'redux/reducers/dishes';
 
 const DishDetail = ({ dishes }) => {
   const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [dish] = dishes.filter((item) => item._id === id);
 
@@ -24,6 +27,11 @@ const DishDetail = ({ dishes }) => {
       onClick={toggleModal}
     />
   );
+
+  const fetchComment = (comment) => {
+    dispatch(addComment(comment, dish._id));
+    toggleModal();
+  };
 
   return (
     <div className="container pb-5">
@@ -64,7 +72,7 @@ const DishDetail = ({ dishes }) => {
               Submit Comment
             </ModalHeader>
             <ModalBody>
-              <CommentForm />
+              <CommentForm fetchComment={fetchComment} />
             </ModalBody>
           </Modal>
         </div>
