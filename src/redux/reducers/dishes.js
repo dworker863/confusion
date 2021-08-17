@@ -3,26 +3,21 @@ import { fetchDishes, postComment } from 'api/api';
 const SET_DISHES = 'confusion/dishes/SET_DISHES';
 const SET_COMMENTS = 'confusion/dishes/SET_COMMENTS';
 
-const initialState = {
-  items: [],
-  isLoading: false,
-};
+const initialState = [];
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_DISHES:
-      return { ...state, items: payload };
+      return [...state, ...payload];
 
     case SET_COMMENTS:
       // eslint-disable-next-line no-case-declarations
-      const index = state.items.findIndex(
-        (dish) => dish._id === payload.dishId,
-      );
+      const index = state.findIndex((dish) => dish._id === payload.dishId);
       // eslint-disable-next-line no-case-declarations
-      const items = [...state.items];
-      items[index].comments = payload.comments;
+      const stateCopy = [...state];
+      stateCopy[index].comments = payload.comments;
 
-      return { ...state, items };
+      return stateCopy;
 
     default:
       return state;

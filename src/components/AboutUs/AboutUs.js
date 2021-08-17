@@ -75,7 +75,7 @@ const AboutUs = () => {
       <div className={styles.content}>
         <h2>Corporate Leadership</h2>
         <Media tag="list">
-          {leaders.items.map((leader) => (
+          {leaders.map((leader) => (
             <MediaComponent
               key={leader.id}
               img={leader.image}

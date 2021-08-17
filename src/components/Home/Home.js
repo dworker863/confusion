@@ -2,9 +2,9 @@ import CardComponent from 'components/common/Card';
 import Loader from 'components/common/Loader';
 
 const Home = ({ dishes, promotions, leaders }) => {
-  const [dishForRender] = dishes.items.filter((dish) => dish.featured);
-  const [promoForRender] = promotions.items.filter((promo) => promo.featured);
-  const [leaderForRender] = leaders.items.filter((leader) => leader.featured);
+  const [dishForRender] = dishes.filter((dish) => dish.featured);
+  const [promoForRender] = promotions.filter((promo) => promo.featured);
+  const [leaderForRender] = leaders.filter((leader) => leader.featured);
 
   return (
     <div className="container pt-1 pb-1">

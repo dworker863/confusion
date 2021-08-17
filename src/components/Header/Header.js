@@ -20,6 +20,7 @@ import {
   faList,
   faAddressCard,
   faSignInAlt,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -72,6 +73,11 @@ const Header = ({ login, logout, username }) => {
               <NavItem>
                 <NavLink className="nav-link" to="/menu">
                   <FontAwesomeIcon icon={faList} size="md" /> Menu
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink className="nav-link" to="/favorites">
+                  <FontAwesomeIcon icon={faHeart} size="md" /> Favorites
                 </NavLink>
               </NavItem>
               <NavItem>

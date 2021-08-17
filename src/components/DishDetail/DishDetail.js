@@ -15,7 +15,7 @@ const DishDetail = ({ dishes }) => {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [dish] = dishes.items.filter((item) => item._id === id);
+  const [dish] = dishes.filter((item) => item._id === id);
 
   const toggleModal = () => setModal(!modal);
 

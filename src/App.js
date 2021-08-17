@@ -15,6 +15,7 @@ import Home from 'components/Home/Home';
 import Menu from 'components/Menu/Menu';
 import Footer from 'components/Footer/Footer';
 import DishDetail from 'components/DishDetail/DishDetail';
+import Favorites from 'components/Favorites/Favorites';
 
 const App = () => {
   const { dishes, promotions, leaders, auth } = useSelector((state) => state);
@@ -51,6 +52,7 @@ const App = () => {
         <Route exact path="/menu" component={Menu} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/menu/:id" render={() => <DishDetail dishes={dishes} />} />
+        <Route path="/favorites" component={Favorites} />
         <Redirect to="/home" />
       </Switch>
       <Footer />
