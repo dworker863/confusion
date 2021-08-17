@@ -1,13 +1,24 @@
 /* eslint-disable operator-linebreak */
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  CardText,
+  CardTitle,
+  CardImgOverlay,
+  Modal,
+  ModalBody,
+  ModalHeader,
+} from 'reactstrap';
 import { useDispatch } from 'react-redux';
 
 import CommentForm from 'components/common/CommentForm';
-import CardComponent from 'components/common/Card';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import { addComment } from 'redux/reducers/dishes';
 
@@ -39,12 +50,18 @@ const DishDetail = ({ dishes }) => {
       <div className="row pt-5 ">
         <div className="col-12 col-md-5 m-1">
           {dish && (
-            <CardComponent
-              size="100%"
-              img={dish.image}
-              name={dish.name}
-              description={dish.description}
-            />
+            <Card>
+              <CardImg width="100%" src={`/${dish.image}`} alt={dish.name} />
+              <CardImgOverlay>
+                <Button outline color="primary">
+                  <FontAwesomeIcon icon={faHeart} />
+                </Button>
+              </CardImgOverlay>
+              <CardBody>
+                <CardTitle>{dish.name}</CardTitle>
+                <CardText>{dish.description}</CardText>
+              </CardBody>
+            </Card>
           )}
         </div>
         <div className="col-12 col-md-5 m-1">

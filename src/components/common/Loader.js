@@ -7,7 +7,8 @@ const Loader = () => {
       <FontAwesomeIcon
         icon={faSpinner}
         size="5x"
-        className="fa-pulse text-primary"
+        className="text-primary"
+        pulse
       />
       <p>Loading . . .</p>
     </div>
