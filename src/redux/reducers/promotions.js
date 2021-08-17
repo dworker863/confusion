@@ -2,12 +2,15 @@ import { fetchPromotions } from 'api/api';
 
 const SET_PROMOTIONS = 'confusion/promotions/SET_PROMOTIONS';
 
-const initialState = [];
+const initialState = {
+  items: [],
+  isLoading: false,
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_PROMOTIONS:
-      return [...state, ...payload];
+      return { ...state, items: payload };
 
     default:
       return state;

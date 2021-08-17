@@ -2,12 +2,15 @@ import { fetchLeaders } from 'api/api';
 
 const SET_LEADERS = 'confusion/leaders/SET_LEADERS';
 
-const initialState = [];
+const initialState = {
+  items: [],
+  isLoading: false,
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_LEADERS:
-      return [...state, ...payload];
+      return { ...state, items: payload };
 
     default:
       return state;

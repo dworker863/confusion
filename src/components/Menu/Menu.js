@@ -12,7 +12,7 @@ const Menu = () => {
     <div className="container">
       <BreadcrumbComponent link="Home" title="Menu" />
       <div className="row">
-        {dishes.map((dish) => (
+        {dishes.items.map((dish) => (
           <div key={dish._id} className="col-12 col-md-5">
             <Card className="m-1 fw-normal">
               <NavLink to={`/menu/${dish._id}`} className={styles.link}>
