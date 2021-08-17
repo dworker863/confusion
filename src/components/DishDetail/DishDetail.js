@@ -1,11 +1,13 @@
 /* eslint-disable operator-linebreak */
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CommentForm from 'components/CommentForm';
-import CardComponent from 'components/common/Card';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+
+import CommentForm from 'components/common/CommentForm';
+import CardComponent from 'components/common/Card';
+import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 
 const DishDetail = ({ dishes }) => {
   const [modal, setModal] = useState(false);
@@ -24,13 +26,14 @@ const DishDetail = ({ dishes }) => {
   );
 
   return (
-    <div className="container pt-5 pb-5">
-      <div className="row">
+    <div className="container pb-5">
+      <BreadcrumbComponent link="Menu" title={dish && dish.name} />
+      <div className="row pt-5 ">
         <div className="col-6">
           {dish && (
             <CardComponent
               size="100%"
-              img={`images/${dish.name.toLowerCase()}.png`}
+              img={dish.image}
               name={dish.name}
               description={dish.description}
             />

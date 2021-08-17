@@ -13,7 +13,7 @@ import styles from './Contacts.module.css';
 const Contacts = () => {
   return (
     <div className="container pb-5">
-      <BreadcrumbComponent title="Contact Us" />
+      <BreadcrumbComponent link="Home" title="Contact Us" />
       <div className="row mt-5 mb-5">
         <div className="col-12 mb-4">
           <h3>Location Information</h3>

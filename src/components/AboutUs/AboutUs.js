@@ -11,7 +11,7 @@ const AboutUs = () => {
 
   return (
     <div className="container">
-      <BreadcrumbComponent title="About Us" />
+      <BreadcrumbComponent link="Home" title="About Us" />
       <main className={styles.content}>
         <div className="row">
           <div className="col-12 col-md-6">

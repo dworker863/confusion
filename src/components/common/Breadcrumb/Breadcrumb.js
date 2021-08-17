@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import styles from './Breadcrumb.module.css';
 
-const BreadcrumbComponent = ({ title }) => {
+const BreadcrumbComponent = ({ link, title }) => {
   return (
     <div className={`row ${styles.rowStyle}`}>
       <Breadcrumb className={styles.breadCrumb}>
         <BreadcrumbItem>
-          <Link to="/home">Home</Link>
+          <Link to={`/${link.toLowerCase()}`}>{link}</Link>
         </BreadcrumbItem>
         <BreadcrumbItem active>{title}</BreadcrumbItem>
       </Breadcrumb>

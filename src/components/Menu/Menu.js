@@ -10,7 +10,7 @@ const Menu = () => {
 
   return (
     <div className="container">
-      <BreadcrumbComponent title="Menu" />
+      <BreadcrumbComponent link="Home" title="Menu" />
       <div className="row">
         {dishes.map((dish) => (
           <div key={dish._id} className="col-12 col-md-5">

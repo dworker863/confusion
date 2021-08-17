@@ -10,7 +10,7 @@ import {
 const CardComponent = ({ size, img, name, description, designation }) => {
   return (
     <Card>
-      <CardImg width={size} src={img} alt={name} />
+      <CardImg width={size} src={`/${img}`} alt={name} />
       <CardBody>
         <CardTitle>{name}</CardTitle>
         {designation && <CardSubtitle>{designation}</CardSubtitle>}
