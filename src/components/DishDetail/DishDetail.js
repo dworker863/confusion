@@ -29,7 +29,7 @@ const DishDetail = ({ dishes }) => {
     <div className="container pb-5">
       <BreadcrumbComponent link="Menu" title={dish && dish.name} />
       <div className="row pt-5 ">
-        <div className="col-6">
+        <div className="col-12 col-md-5 m-1">
           {dish && (
             <CardComponent
               size="100%"
@@ -39,7 +39,7 @@ const DishDetail = ({ dishes }) => {
             />
           )}
         </div>
-        <div className="col-6">
+        <div className="col-12 col-md-5 m-1">
           {dish &&
             dish.comments &&
             dish.comments.map((comment) => (
