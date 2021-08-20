@@ -20,11 +20,7 @@ export const fetchFavorites = () => {
     .get(`${baseURL}favorites`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then((response) => {
-      // eslint-disable-next-line no-debugger
-      debugger;
-      return response.data;
-    });
+    .then((response) => response.data);
 };
 
 export const login = (username, password) => {
@@ -54,12 +50,16 @@ export const postComment = (comment, dishId) => {
 
 export const postFavorite = (dishId) => {
   return axios
-    .post(`${baseURL}favorites`, [{ _id: dishId }], {
+    .post(`${baseURL}favorites/${dishId}`, null, {
       headers: { Authorization: `Bearer ${token}` },
     })
-    .then((response) => {
-      // eslint-disable-next-line no-debugger
-      debugger;
-      return response.data;
-    });
+    .then((response) => response.data);
+};
+
+export const removeFavorite = (dishId) => {
+  return axios
+    .delete(`${baseURL}favorites/${dishId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => response.data);
 };

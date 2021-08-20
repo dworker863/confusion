@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getFavorites } from 'redux/reducers/favorites';
+import { deleteFavorite, getFavorites } from 'redux/reducers/favorites';
 
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import MediaComponent from 'components/common/Media';
@@ -14,6 +14,10 @@ const Favorites = () => {
   useEffect(() => {
     dispatch(getFavorites());
   }, [dispatch]);
+
+  const removeFavorite = (dishId) => {
+    dispatch(deleteFavorite(dishId));
+  };
 
   return (
     <div className="container pb-5">
@@ -28,6 +32,7 @@ const Favorites = () => {
               img={dish.image}
               name={dish.name}
               description={dish.description}
+              buttonHandler={() => removeFavorite(dish._id)}
               button
             />
           </>

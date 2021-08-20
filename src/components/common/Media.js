@@ -8,6 +8,7 @@ const MediaComponent = ({
   name,
   description,
   designation,
+  buttonHandler,
   button,
 }) => {
   return (
@@ -20,7 +21,7 @@ const MediaComponent = ({
         {designation && <p>{designation}</p>}
         <p>{description}</p>
         {button && (
-          <Button outline color="danger">
+          <Button outline color="danger" onClick={buttonHandler}>
             <FontAwesomeIcon icon={faTimes} />
           </Button>
         )}

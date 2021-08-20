@@ -1,4 +1,4 @@
-import { fetchFavorites, postFavorite } from 'api/api';
+import { fetchFavorites, postFavorite, removeFavorite } from 'api/api';
 
 const SET_FAVORITES = 'confusion/favorites/SET_FAVORITES';
 
@@ -30,6 +30,12 @@ export const getFavorites = () => (dispatch) => {
 
 export const addFavorite = (dishId) => (dispatch) => {
   postFavorite(dishId).then((favorites) => {
+    dispatch(setFavorites(favorites));
+  });
+};
+
+export const deleteFavorite = (dishId) => (dispatch) => {
+  removeFavorite(dishId).then((favorites) => {
     dispatch(setFavorites(favorites));
   });
 };
