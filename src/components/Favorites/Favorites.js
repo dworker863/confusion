@@ -8,7 +8,7 @@ import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import MediaComponent from 'components/common/Media';
 
 const Favorites = () => {
-  const { favorites, auth } = useSelector((state) => state);
+  const { favorites } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,11 +16,10 @@ const Favorites = () => {
   }, [dispatch]);
 
   return (
-    <div className="container">
+    <div className="container pb-5">
       <BreadcrumbComponent link="Home" title="My Favorites" />
 
-      {auth &&
-        favorites &&
+      {favorites &&
         favorites.dishes &&
         favorites.dishes.map((dish) => (
           <>

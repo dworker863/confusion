@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import CommentForm from 'components/common/CommentForm';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import { addComment } from 'redux/reducers/dishes';
+import { addFavorite } from 'redux/reducers/favorites';
 
 const DishDetail = ({ dishes }) => {
   const [modal, setModal] = useState(false);
@@ -39,9 +40,13 @@ const DishDetail = ({ dishes }) => {
     />
   );
 
-  const fetchComment = (comment) => {
+  const postComment = (comment) => {
     dispatch(addComment(comment, dish._id));
     toggleModal();
+  };
+
+  const postFavorite = () => {
+    dispatch(addFavorite(dish._id));
   };
 
   return (
@@ -53,7 +58,7 @@ const DishDetail = ({ dishes }) => {
             <Card>
               <CardImg width="100%" src={`/${dish.image}`} alt={dish.name} />
               <CardImgOverlay>
-                <Button outline color="primary">
+                <Button outline color="primary" onClick={postFavorite}>
                   <FontAwesomeIcon icon={faHeart} />
                 </Button>
               </CardImgOverlay>
@@ -89,7 +94,7 @@ const DishDetail = ({ dishes }) => {
               Submit Comment
             </ModalHeader>
             <ModalBody>
-              <CommentForm fetchComment={fetchComment} />
+              <CommentForm fetchComment={postComment} />
             </ModalBody>
           </Modal>
         </div>

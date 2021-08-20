@@ -1,8 +1,11 @@
-import { fetchFavorites } from 'api/api';
+import { fetchFavorites, postFavorite } from 'api/api';
 
 const SET_FAVORITES = 'confusion/favorites/SET_FAVORITES';
 
-const initialState = [];
+const initialState = {
+  dishes: [],
+  user: null,
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -21,6 +24,12 @@ export const setFavorites = (favorites) => ({
 
 export const getFavorites = () => (dispatch) => {
   fetchFavorites().then((favorites) => {
+    dispatch(setFavorites(favorites));
+  });
+};
+
+export const addFavorite = (dishId) => (dispatch) => {
+  postFavorite(dishId).then((favorites) => {
     dispatch(setFavorites(favorites));
   });
 };

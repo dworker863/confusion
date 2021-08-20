@@ -51,3 +51,15 @@ export const postComment = (comment, dishId) => {
     })
     .then((response) => response.data);
 };
+
+export const postFavorite = (dishId) => {
+  return axios
+    .post(`${baseURL}favorites`, [{ _id: dishId }], {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      // eslint-disable-next-line no-debugger
+      debugger;
+      return response.data;
+    });
+};
