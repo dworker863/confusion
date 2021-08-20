@@ -1,6 +1,6 @@
 /* eslint-disable operator-linebreak */
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { fas, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,15 +16,17 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CommentForm from 'components/common/CommentForm';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import { addComment } from 'redux/reducers/dishes';
 import { addFavorite } from 'redux/reducers/favorites';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 const DishDetail = ({ dishes }) => {
   const [modal, setModal] = useState(false);
+  const { favorites } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [dish] = dishes.filter((item) => item._id === id);
@@ -49,6 +51,8 @@ const DishDetail = ({ dishes }) => {
     dispatch(addFavorite(dish._id));
   };
 
+  const isFavorite = favorites.dishes.some((item) => item._id === dish._id);
+
   return (
     <div className="container pb-5">
       <BreadcrumbComponent link="Menu" title={dish && dish.name} />
@@ -59,7 +63,9 @@ const DishDetail = ({ dishes }) => {
               <CardImg width="100%" src={`/${dish.image}`} alt={dish.name} />
               <CardImgOverlay>
                 <Button outline color="primary" onClick={postFavorite}>
-                  <FontAwesomeIcon icon={faHeart} />
+                  <FontAwesomeIcon
+                    icon={isFavorite ? ['fas', 'heart'] : ['far', 'heart']}
+                  />
                 </Button>
               </CardImgOverlay>
               <CardBody>
@@ -102,5 +108,7 @@ const DishDetail = ({ dishes }) => {
     </div>
   );
 };
+
+library.add(fas, far);
 
 export default DishDetail;
