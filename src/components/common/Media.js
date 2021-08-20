@@ -1,15 +1,29 @@
-import { Media } from 'reactstrap';
+import { Media, Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const MediaComponent = ({ img, name, description, designation }) => {
+const MediaComponent = ({
+  key,
+  img,
+  name,
+  description,
+  designation,
+  button,
+}) => {
   return (
-    <Media tag="li" className="d-flex" style={{ marginTop: '50px' }}>
+    <Media key={key} tag="li" className="d-flex" style={{ marginTop: '50px' }}>
       <Media left href="#">
-        <Media object src={img} alt={name} />
+        <Media object src={`/${img}`} alt={name} />
       </Media>
       <Media body style={{ marginLeft: '50px' }}>
         <Media heading>{name}</Media>
         {designation && <p>{designation}</p>}
         <p>{description}</p>
+        {button && (
+          <Button outline color="danger">
+            <FontAwesomeIcon icon={faTimes} />
+          </Button>
+        )}
       </Media>
     </Media>
   );

@@ -1,12 +1,14 @@
 /* eslint-disable operator-linebreak */
-import { getFavorites } from 'redux/reducers/favorites';
-
-import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import { getFavorites } from 'redux/reducers/favorites';
+
+import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
+import MediaComponent from 'components/common/Media';
+
 const Favorites = () => {
-  const { favorites } = useSelector((state) => state);
+  const { favorites, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,10 +18,20 @@ const Favorites = () => {
   return (
     <div className="container">
       <BreadcrumbComponent link="Home" title="My Favorites" />
-      {favorites &&
+
+      {auth &&
+        favorites &&
         favorites.dishes &&
-        favorites.dishes.map((favorite) => (
-          <p key={favorite._id}>{favorite.name}</p>
+        favorites.dishes.map((dish) => (
+          <>
+            <MediaComponent
+              key={dish._id}
+              img={dish.image}
+              name={dish.name}
+              description={dish.description}
+              button
+            />
+          </>
         ))}
     </div>
   );

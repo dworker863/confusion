@@ -77,7 +77,7 @@ const AboutUs = () => {
         <Media tag="list">
           {leaders.map((leader) => (
             <MediaComponent
-              key={leader.id}
+              key={leader._id}
               img={leader.image}
               name={leader.name}
               designation={leader.designation}
