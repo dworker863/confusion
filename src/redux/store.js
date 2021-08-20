@@ -4,12 +4,14 @@ import thunkMidlleware from 'redux-thunk';
 import dishes from './reducers/dishes';
 import promotions from './reducers/promotions';
 import leaders from './reducers/leaders';
+import favorites from './reducers/favorites';
 import auth from './reducers/auth';
 
 const reducers = combineReducers({
   dishes,
   promotions,
   leaders,
+  favorites,
   auth,
 });
 

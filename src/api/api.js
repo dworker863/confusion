@@ -15,6 +15,18 @@ export const fetchLeaders = () => {
   return axios.get(`${baseURL}leaders`).then((response) => response.data);
 };
 
+export const fetchFavorites = () => {
+  return axios
+    .get(`${baseURL}favorites`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      // eslint-disable-next-line no-debugger
+      debugger;
+      return response.data;
+    });
+};
+
 export const login = (username, password) => {
   return axios
     .post(`${baseURL}users/login`, { username, password })
