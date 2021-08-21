@@ -69,6 +69,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-12">
+            <p className="text-center">
+              © Copyright 2021 Ristorante Con Fusion
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );
