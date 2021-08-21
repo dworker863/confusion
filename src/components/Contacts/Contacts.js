@@ -155,7 +155,7 @@ const Contacts = () => {
           </div>
 
           <div className="row">
-            <div className="col-12 col-md-3 offset-md-2">
+            <div className="offset-md-2 col-5 col-sm-4 col-md-3">
               <Button type="submit" color="primary">
                 Send Feedback
               </Button>

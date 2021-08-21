@@ -36,11 +36,9 @@ const App = () => {
     dispatch(dropAuth());
   };
 
-  const username = auth.username;
-
   return (
     <div>
-      <Header login={login} logout={logout} username={username} />
+      <Header login={login} logout={logout} auth={auth} />
       <Switch>
         <Route
           path="/home"
@@ -52,7 +50,7 @@ const App = () => {
         <Route exact path="/menu" component={Menu} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/menu/:id" render={() => <DishDetail dishes={dishes} />} />
-        <Route path="/favorites" component={Favorites} />
+        {auth.auth && <Route path="/favorites" component={Favorites} />}
         <Redirect to="/home" />
       </Switch>
       <Footer />

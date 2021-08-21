@@ -2,8 +2,9 @@ import { useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody, Media } from 'reactstrap';
 
 import MediaComponent from 'components/common/Media';
-
+import Loader from 'components/common/Loader';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
+
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
@@ -75,15 +76,19 @@ const AboutUs = () => {
       <div className={styles.content}>
         <h2>Corporate Leadership</h2>
         <Media tag="list">
-          {leaders.map((leader) => (
-            <MediaComponent
-              key={leader._id}
-              img={leader.image}
-              name={leader.name}
-              designation={leader.designation}
-              description={leader.description}
-            />
-          ))}
+          {leaders.length ? (
+            leaders.map((leader) => (
+              <MediaComponent
+                key={leader._id}
+                img={leader.image}
+                name={leader.name}
+                designation={leader.designation}
+                description={leader.description}
+              />
+            ))
+          ) : (
+            <Loader />
+          )}
         </Media>
       </div>
     </div>

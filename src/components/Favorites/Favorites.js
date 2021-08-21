@@ -6,6 +6,7 @@ import { deleteFavorite, getFavorites } from 'redux/reducers/favorites';
 
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import MediaComponent from 'components/common/Media';
+import Loader from 'components/common/Loader';
 
 const Favorites = () => {
   const { favorites } = useSelector((state) => state);
@@ -23,8 +24,7 @@ const Favorites = () => {
     <div className="container pb-5">
       <BreadcrumbComponent link="Home" title="My Favorites" />
 
-      {favorites &&
-        favorites.dishes &&
+      {favorites.dishes.length ? (
         favorites.dishes.map((dish) => (
           <>
             <MediaComponent
@@ -36,7 +36,10 @@ const Favorites = () => {
               button
             />
           </>
-        ))}
+        ))
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

@@ -27,7 +27,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 import styles from './Header.module.css';
 
-const Header = ({ login, logout, username }) => {
+const Header = ({ login, logout, auth }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -75,11 +75,13 @@ const Header = ({ login, logout, username }) => {
                   <FontAwesomeIcon icon={faList} size="md" /> Menu
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className="nav-link" to="/favorites">
-                  <FontAwesomeIcon icon={faHeart} size="md" /> Favorites
-                </NavLink>
-              </NavItem>
+              {auth.auth && (
+                <NavItem>
+                  <NavLink className="nav-link" to="/favorites">
+                    <FontAwesomeIcon icon={faHeart} size="md" /> Favorites
+                  </NavLink>
+                </NavItem>
+              )}
               <NavItem>
                 <NavLink className="nav-link" to="/contacts">
                   <FontAwesomeIcon icon={faAddressCard} size="md" /> Contact Us
@@ -89,10 +91,10 @@ const Header = ({ login, logout, username }) => {
           </Collapse>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              {username && (
-                <span className={styles.userInfo}>Welcome, {username}! </span>
+              {auth.username && (
+                <span className={styles.userInfo}>{auth.username}</span>
               )}
-              {username ? (
+              {auth.username ? (
                 <Button
                   outline
                   color="secondary"
