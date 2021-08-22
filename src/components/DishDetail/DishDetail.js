@@ -31,6 +31,7 @@ const DishDetail = () => {
   const [modal, setModal] = useState(false);
   const favorites = useSelector((state) => state.favorites);
   const dishes = useSelector((state) => state.dishes);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [dish] = dishes.items.filter((item) => item._id === id);
@@ -52,7 +53,6 @@ const DishDetail = () => {
 
   const postComment = (comment) => {
     dispatch(addComment(comment, dish._id));
-    toggleModal();
   };
 
   const postFavorite = () => {
@@ -110,9 +110,11 @@ const DishDetail = () => {
               </div>
             ))
           )}
-          <Button outline onClick={toggleModal}>
-            <FontAwesomeIcon icon={faPencilAlt} /> Submit Comment
-          </Button>
+          {auth.auth && (
+            <Button outline onClick={toggleModal}>
+              <FontAwesomeIcon icon={faPencilAlt} /> Submit Comment
+            </Button>
+          )}
           <Modal isOpen={modal} toggle={toggleModal}>
             <ModalHeader toggle={toggleModal} close={closeBtn}>
               Submit Comment

@@ -44,6 +44,7 @@ export const dropAuth = () => (dispatch) => {
   logout().then(() => {
     localStorage.setItem('username', '');
     localStorage.setItem('auth', false);
+    localStorage.setItem('token', null);
     dispatch(setAuth({ username: '', auth: false }));
   });
 };

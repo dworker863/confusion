@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://localhost:3445/';
+const baseURL = 'https://localhost:3443/';
 
 export const fetchDishes = () => {
   return axios.get(`${baseURL}dishes`).then((response) => response.data);
