@@ -15,7 +15,7 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, items: payload };
 
     case SET_FETCHING:
-      return { ...state, isFeetching: payload };
+      return { ...state, isFetching: payload };
 
     default:
       return state;
@@ -33,7 +33,9 @@ export const setFetching = (payload) => ({
 });
 
 export const getPromotions = () => (dispatch) => {
+  dispatch(setFetching(true));
   fetchPromotions().then((promotions) => {
     dispatch(setPromotions(promotions));
+    dispatch(setFetching(false));
   });
 };

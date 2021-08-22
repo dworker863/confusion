@@ -48,13 +48,17 @@ export const setFetching = (payload) => ({
 });
 
 export const getDishes = () => (dispatch) => {
+  dispatch(setFetching(true));
   fetchDishes().then((dishes) => {
     dispatch(setDishes(dishes));
+    dispatch(setFetching(false));
   });
 };
 
 export const addComment = (comment, dishId) => (dispatch) => {
+  dispatch(setFetching(true));
   postComment(comment, dishId).then((comments) => {
     dispatch(setComments({ dishId, comments: comments.comments }));
+    dispatch(setFetching(false));
   });
 };

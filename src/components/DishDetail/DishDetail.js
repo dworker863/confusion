@@ -1,8 +1,9 @@
 /* eslint-disable operator-linebreak */
 import { fas, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Button,
@@ -18,18 +19,24 @@ import {
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { addComment, getDishes } from 'redux/reducers/dishes';
+import { addFavorite } from 'redux/reducers/favorites';
+
 import CommentForm from 'components/common/CommentForm';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
-import { addComment } from 'redux/reducers/dishes';
-import { addFavorite } from 'redux/reducers/favorites';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import Loader from 'components/common/Loader';
 
-const DishDetail = ({ dishes }) => {
+const DishDetail = () => {
   const [modal, setModal] = useState(false);
-  const { favorites } = useSelector((state) => state);
+  const favorites = useSelector((state) => state.favorites);
+  const dishes = useSelector((state) => state.dishes);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [dish] = dishes.filter((item) => item._id === id);
+  const [dish] = dishes.items.filter((item) => item._id === id);
+
+  useEffect(() => {
+    dispatch(getDishes());
+  }, [dispatch]);
 
   const toggleModal = () => setModal(!modal);
 
@@ -58,25 +65,32 @@ const DishDetail = ({ dishes }) => {
       <BreadcrumbComponent link="Menu" title={dish && dish.name} />
       <div className="row pt-5 ">
         <div className="col-12 col-md-5 m-1">
-          {dish && (
-            <Card>
-              <CardImg width="100%" src={`/${dish.image}`} alt={dish.name} />
-              <CardImgOverlay>
-                <Button outline color="primary" onClick={postFavorite}>
-                  <FontAwesomeIcon
-                    icon={isFavorite ? ['fas', 'heart'] : ['far', 'heart']}
-                  />
-                </Button>
-              </CardImgOverlay>
-              <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-              </CardBody>
-            </Card>
+          {dishes.isFetching ? (
+            <Loader />
+          ) : (
+            dish && (
+              <Card>
+                <CardImg width="100%" src={`/${dish.image}`} alt={dish.name} />
+                <CardImgOverlay>
+                  <Button outline color="primary" onClick={postFavorite}>
+                    <FontAwesomeIcon
+                      icon={isFavorite ? ['fas', 'heart'] : ['far', 'heart']}
+                    />
+                  </Button>
+                </CardImgOverlay>
+                <CardBody>
+                  <CardTitle>{dish.name}</CardTitle>
+                  <CardText>{dish.description}</CardText>
+                </CardBody>
+              </Card>
+            )
           )}
         </div>
         <div className="col-12 col-md-5 m-1">
-          {dish &&
+          {dishes.isFetching ? (
+            <Loader />
+          ) : (
+            dish &&
             dish.comments &&
             dish.comments.map((comment) => (
               <div key={comment._id}>
@@ -91,7 +105,8 @@ const DishDetail = ({ dishes }) => {
                   })}
                 </p>
               </div>
-            ))}
+            ))
+          )}
           <Button outline onClick={toggleModal}>
             <FontAwesomeIcon icon={faPencilAlt} /> Submit Comment
           </Button>

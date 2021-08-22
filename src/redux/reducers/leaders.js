@@ -33,7 +33,9 @@ export const setFetching = (payload) => ({
 });
 
 export const getLeaders = () => (dispatch) => {
+  dispatch(setFetching(true));
   fetchLeaders().then((leaders) => {
     dispatch(setLeaders(leaders));
+    dispatch(setFetching(false));
   });
 };

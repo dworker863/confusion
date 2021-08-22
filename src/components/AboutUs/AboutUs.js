@@ -1,14 +1,23 @@
-import { useSelector } from 'react-redux';
+/* eslint-disable no-nested-ternary */
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardHeader, CardBody, Media } from 'reactstrap';
 
 import MediaComponent from 'components/common/Media';
 import Loader from 'components/common/Loader';
 import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 
+import { getLeaders } from 'redux/reducers/leaders';
+
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
   const leaders = useSelector((state) => state.leaders);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLeaders());
+  }, [dispatch]);
 
   return (
     <div className="container">
@@ -76,8 +85,10 @@ const AboutUs = () => {
       <div className={styles.content}>
         <h2>Corporate Leadership</h2>
         <Media tag="list">
-          {leaders.length ? (
-            leaders.map((leader) => (
+          {leaders.isFetching ? (
+            <Loader />
+          ) : leaders.items.length ? (
+            leaders.items.map((leader) => (
               <MediaComponent
                 key={leader._id}
                 img={leader.image}

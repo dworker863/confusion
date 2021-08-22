@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable operator-linebreak */
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -9,7 +10,7 @@ import MediaComponent from 'components/common/Media';
 import Loader from 'components/common/Loader';
 
 const Favorites = () => {
-  const { favorites } = useSelector((state) => state);
+  const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,9 @@ const Favorites = () => {
     <div className="container pb-5">
       <BreadcrumbComponent link="Home" title="My Favorites" />
 
-      {favorites.dishes.length ? (
+      {favorites.isFetching ? (
+        <Loader />
+      ) : favorites.dishes.length ? (
         favorites.dishes.map((dish) => (
           <>
             <MediaComponent
@@ -37,9 +40,7 @@ const Favorites = () => {
             />
           </>
         ))
-      ) : (
-        <Loader />
-      )}
+      ) : null}
     </div>
   );
 };
