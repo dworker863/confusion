@@ -1,14 +1,21 @@
 import { fetchPromotions } from 'api/api';
-import { setError } from './errors';
 
 const SET_PROMOTIONS = 'confusion/promotions/SET_PROMOTIONS';
+const SET_FETCHING = 'confusion/promotions/SET_FETCHING';
 
-const initialState = [];
+const initialState = {
+  items: [],
+  isFetching: false,
+  errorMessage: '',
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_PROMOTIONS:
-      return [...state, ...payload];
+      return { ...state, items: payload };
+
+    case SET_FETCHING:
+      return { ...state, isFeetching: payload };
 
     default:
       return state;
@@ -20,13 +27,13 @@ export const setPromotions = (promotions) => ({
   payload: promotions,
 });
 
+export const setFetching = (payload) => ({
+  type: SET_FETCHING,
+  payload,
+});
+
 export const getPromotions = () => (dispatch) => {
-  fetchPromotions()
-    .then((promotions) => {
-      dispatch(setPromotions(promotions));
-    })
-    .catch(() => {
-      const error = new Error('Failed to fetch promotions');
-      dispatch(setError(error));
-    });
+  fetchPromotions().then((promotions) => {
+    dispatch(setPromotions(promotions));
+  });
 };

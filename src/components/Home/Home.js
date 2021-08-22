@@ -12,12 +12,15 @@ const Home = () => {
   const dishes = useSelector((state) => state.dishes);
   const leaders = useSelector((state) => state.leaders);
   const promotions = useSelector((state) => state.promotions);
+  const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
+
+  window.errors = errors;
 
   useEffect(() => {
     dispatch(getDishes());
-    dispatch(getLeaders());
     dispatch(getPromotions());
+    dispatch(getLeaders());
   }, [dispatch]);
 
   const [dishForRender] = dishes.filter((dish) => dish.featured);

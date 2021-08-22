@@ -6,7 +6,6 @@ import promotions from './reducers/promotions';
 import leaders from './reducers/leaders';
 import favorites from './reducers/favorites';
 import auth from './reducers/auth';
-import errors from './reducers/errors';
 
 const reducers = combineReducers({
   dishes,
@@ -14,7 +13,6 @@ const reducers = combineReducers({
   leaders,
   favorites,
   auth,
-  errors,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,5 +21,7 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(thunkMidlleware)),
 );
+
+window.state = store.getState();
 
 export default store;

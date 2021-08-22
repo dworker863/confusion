@@ -1,22 +1,29 @@
 import { fetchDishes, postComment } from 'api/api';
-import { setError } from './errors';
 
 const SET_DISHES = 'confusion/dishes/SET_DISHES';
 const SET_COMMENTS = 'confusion/dishes/SET_COMMENTS';
+const SET_FETCHING = 'confusion/dishes/SET_FETCHING';
 
-const initialState = [];
+const initialState = {
+  items: [],
+  isFetching: false,
+  errorMessage: '',
+};
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_DISHES:
-      return [...state, ...payload];
+      return { ...state, items: payload };
+
+    case SET_FETCHING:
+      return { ...state, isFetching: payload };
 
     case SET_COMMENTS:
       // eslint-disable-next-line no-case-declarations
       const index = state.findIndex((dish) => dish._id === payload.dishId);
       // eslint-disable-next-line no-case-declarations
-      const stateCopy = [...state];
-      stateCopy[index].comments = payload.comments;
+      const stateCopy = { ...state };
+      stateCopy.items[index].comments = payload.comments;
 
       return stateCopy;
 
@@ -30,20 +37,20 @@ export const setDishes = (dishes) => ({
   payload: dishes,
 });
 
-export const setComments = (payload) => ({
+export const setComments = (comments) => ({
   type: SET_COMMENTS,
+  payload: comments,
+});
+
+export const setFetching = (payload) => ({
+  type: SET_FETCHING,
   payload,
 });
 
 export const getDishes = () => (dispatch) => {
-  fetchDishes()
-    .then((dishes) => {
-      dispatch(setDishes(dishes));
-    })
-    .catch(() => {
-      const error = new Error('Failed to fetch dishes');
-      dispatch(setError(error));
-    });
+  fetchDishes().then((dishes) => {
+    dispatch(setDishes(dishes));
+  });
 };
 
 export const addComment = (comment, dishId) => (dispatch) => {
