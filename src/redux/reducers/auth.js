@@ -17,10 +17,7 @@ export default (state = initialState, { type, payload }) => {
           localStorage.setItem('auth', payload.auth);
         }
       }
-      return {
-        username: payload.username,
-        auth: payload.auth,
-      };
+      return { ...state, username: payload.username, auth: payload.auth };
 
     default:
       return state;
@@ -33,11 +30,17 @@ export const setAuth = (payload) => ({
 });
 
 export const getAuth = (username, password) => (dispatch) => {
-  login(username, password).then((response) => {
-    if (response.success) {
-      dispatch(setAuth({ username, auth: true }));
-    }
-  });
+  return login(username, password)
+    .then((response) => {
+      if (response.success) {
+        dispatch(setAuth({ username, auth: true }));
+      }
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        throw error;
+      }
+    });
 };
 
 export const dropAuth = () => (dispatch) => {

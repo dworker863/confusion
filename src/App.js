@@ -19,7 +19,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const login = (username, password) => {
-    dispatch(getAuth(username, password));
+    return dispatch(getAuth(username, password));
   };
 
   const logout = () => {

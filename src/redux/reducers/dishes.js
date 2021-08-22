@@ -73,17 +73,8 @@ export const getDishes = () => (dispatch) => {
 
 export const addComment = (comment, dishId) => (dispatch) => {
   dispatch(setFetching(true));
-  postComment(comment, dishId)
-    .then((comments) => {
-      dispatch(setComments({ dishId, comments: comments.comments }));
-      dispatch(setFetching(false));
-    })
-    .catch((error) => {
-      if (error.response.status === 401) {
-        const customError = new Error(
-          'Only authorized users can leave a comment',
-        );
-        dispatch(setError(customError.message));
-      }
-    });
+  postComment(comment, dishId).then((comments) => {
+    dispatch(setComments({ dishId, comments: comments.comments }));
+    dispatch(setFetching(false));
+  });
 };

@@ -30,8 +30,12 @@ import styles from './Header.module.css';
 const Header = ({ login, logout, auth }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState(false);
+  const [authError, setAuthError] = useState(null);
 
-  const toggleModal = () => setModal(!modal);
+  const toggleModal = () => {
+    setAuthError(null);
+    setModal(!modal);
+  };
 
   const toggle = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -150,9 +154,19 @@ const Header = ({ login, logout, auth }) => {
             })}
             onSubmit={(values, { setSubmitting }) => {
               localStorage.setItem('remember', values.remember);
-              login(values.username, values.password);
-              setSubmitting(false);
-              toggleModal();
+              login(values.username, values.password)
+                .then(() => {
+                  setSubmitting(false);
+                  toggleModal();
+                })
+                .catch((error) => {
+                  if (error.response.status === 401) {
+                    setModal(true);
+                    setSubmitting(false);
+                    const customError = new Error('Wrong username or password');
+                    setAuthError(customError.message);
+                  }
+                });
             }}
           >
             <Form>
@@ -176,6 +190,7 @@ const Header = ({ login, logout, auth }) => {
                   <label htmlFor="remember">Remember Me</label>
                 </div>
               </div>
+              {authError && <p style={{ color: 'red' }}>{authError}</p>}
               <Button type="submit" color="primary">
                 Login
               </Button>
