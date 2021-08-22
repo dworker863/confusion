@@ -85,7 +85,9 @@ const AboutUs = () => {
       <div className={styles.content}>
         <h2>Corporate Leadership</h2>
         <Media tag="list">
-          {leaders.isFetching ? (
+          {leaders.errorMessage ? (
+            <p>{leaders.errorMessage}</p>
+          ) : leaders.isFetching ? (
             <Loader />
           ) : leaders.items.length ? (
             leaders.items.map((leader) => (

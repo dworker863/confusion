@@ -44,10 +44,15 @@ export const setError = (error) => ({
 
 export const getFavorites = () => (dispatch) => {
   dispatch(setFetching(true));
-  fetchFavorites().then((favorites) => {
-    dispatch(setFavorites(favorites));
-    dispatch(setFetching(false));
-  });
+  fetchFavorites()
+    .then((favorites) => {
+      dispatch(setFavorites(favorites));
+      dispatch(setFetching(false));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch favorites');
+      dispatch(setError(error.message));
+    });
 };
 
 export const addFavorite = (dishId) => (dispatch) => {

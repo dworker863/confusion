@@ -29,7 +29,9 @@ const Home = () => {
     <div className="container pt-1 pb-1">
       <div className="row">
         <div className="col-12 col-lg-4 d-flex align-items-stretch">
-          {dishes.isFetching ? (
+          {dishes.errorMessage ? (
+            <p>{dishes.errorMessage}</p>
+          ) : dishes.isFetching ? (
             <Loader />
           ) : dishForRender ? (
             <CardComponent
@@ -41,7 +43,9 @@ const Home = () => {
           ) : null}
         </div>
         <div className="col-12 col-lg-4 d-flex align-items-stretch">
-          {promotions.isFetching ? (
+          {promotions.errorMessage ? (
+            <p>{promotions.errorMessage}</p>
+          ) : promotions.isFetching ? (
             <Loader />
           ) : promoForRender ? (
             <CardComponent
@@ -53,7 +57,9 @@ const Home = () => {
           ) : null}
         </div>
         <div className="col-12 col-lg-4 d-flex align-items-stretch">
-          {leaders.isFetching ? (
+          {leaders.errorMessage ? (
+            <p>{leaders.errorMessage}</p>
+          ) : leaders.isFetching ? (
             <Loader />
           ) : leaderForRender ? (
             <CardComponent

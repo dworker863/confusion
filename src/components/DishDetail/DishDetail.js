@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable operator-linebreak */
 import { fas, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -65,7 +66,9 @@ const DishDetail = () => {
       <BreadcrumbComponent link="Menu" title={dish && dish.name} />
       <div className="row pt-5 ">
         <div className="col-12 col-md-5 m-1">
-          {dishes.isFetching ? (
+          {dishes.errorMessage ? (
+            <p>{dishes.errorMessage}</p>
+          ) : dishes.isFetching ? (
             <Loader />
           ) : (
             dish && (

@@ -25,7 +25,9 @@ const Favorites = () => {
     <div className="container pb-5">
       <BreadcrumbComponent link="Home" title="My Favorites" />
 
-      {favorites.isFetching ? (
+      {favorites.errorMessage ? (
+        <p>{favorites.errorMessage}</p>
+      ) : favorites.isFetching ? (
         <Loader />
       ) : favorites.dishes.length ? (
         favorites.dishes.map((dish) => (

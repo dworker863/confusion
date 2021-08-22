@@ -23,7 +23,9 @@ const Menu = () => {
     <div className="container">
       <BreadcrumbComponent link="Home" title="Menu" />
       <div className="row">
-        {dishes.isFetching ? (
+        {dishes.errorMessage ? (
+          <p>{dishes.errorMessage}</p>
+        ) : dishes.isFetching ? (
           <Loader />
         ) : dishes.items.length ? (
           dishes.items.map((dish) => (

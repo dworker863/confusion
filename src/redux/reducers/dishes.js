@@ -60,10 +60,15 @@ export const setError = (error) => ({
 
 export const getDishes = () => (dispatch) => {
   dispatch(setFetching(true));
-  fetchDishes().then((dishes) => {
-    dispatch(setDishes(dishes));
-    dispatch(setFetching(false));
-  });
+  fetchDishes()
+    .then((dishes) => {
+      dispatch(setDishes(dishes));
+      dispatch(setFetching(false));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch dishes');
+      dispatch(setError(error.message));
+    });
 };
 
 export const addComment = (comment, dishId) => (dispatch) => {

@@ -43,8 +43,13 @@ export const setError = (error) => ({
 
 export const getPromotions = () => (dispatch) => {
   dispatch(setFetching(true));
-  fetchPromotions().then((promotions) => {
-    dispatch(setPromotions(promotions));
-    dispatch(setFetching(false));
-  });
+  fetchPromotions()
+    .then((promotions) => {
+      dispatch(setPromotions(promotions));
+      dispatch(setFetching(false));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch promotions');
+      dispatch(setError(error.message));
+    });
 };

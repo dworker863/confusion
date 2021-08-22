@@ -43,8 +43,13 @@ export const setError = (error) => ({
 
 export const getLeaders = () => (dispatch) => {
   dispatch(setFetching(true));
-  fetchLeaders().then((leaders) => {
-    dispatch(setLeaders(leaders));
-    dispatch(setFetching(false));
-  });
+  fetchLeaders()
+    .then((leaders) => {
+      dispatch(setLeaders(leaders));
+      dispatch(setFetching(false));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch leaders');
+      dispatch(setError(error.message));
+    });
 };
