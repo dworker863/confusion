@@ -1,4 +1,5 @@
 import { fetchDishes, postComment } from 'api/api';
+import { setError } from './errors';
 
 const SET_DISHES = 'confusion/dishes/SET_DISHES';
 const SET_COMMENTS = 'confusion/dishes/SET_COMMENTS';
@@ -35,9 +36,14 @@ export const setComments = (payload) => ({
 });
 
 export const getDishes = () => (dispatch) => {
-  fetchDishes().then((dishes) => {
-    dispatch(setDishes(dishes));
-  });
+  fetchDishes()
+    .then((dishes) => {
+      dispatch(setDishes(dishes));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch dishes');
+      dispatch(setError(error));
+    });
 };
 
 export const addComment = (comment, dishId) => (dispatch) => {

@@ -7,7 +7,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import styles from './Menu.module.css';
 
 const Menu = () => {
-  const { dishes } = useSelector((state) => state);
+  const dishes = useSelector((state) => state.dishes);
 
   return (
     <div className="container">

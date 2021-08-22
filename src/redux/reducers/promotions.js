@@ -1,4 +1,5 @@
 import { fetchPromotions } from 'api/api';
+import { setError } from './errors';
 
 const SET_PROMOTIONS = 'confusion/promotions/SET_PROMOTIONS';
 
@@ -20,7 +21,12 @@ export const setPromotions = (promotions) => ({
 });
 
 export const getPromotions = () => (dispatch) => {
-  fetchPromotions().then((promotions) => {
-    dispatch(setPromotions(promotions));
-  });
+  fetchPromotions()
+    .then((promotions) => {
+      dispatch(setPromotions(promotions));
+    })
+    .catch(() => {
+      const error = new Error('Failed to fetch promotions');
+      dispatch(setError(error));
+    });
 };

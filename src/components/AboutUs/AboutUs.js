@@ -8,7 +8,7 @@ import BreadcrumbComponent from 'components/common/Breadcrumb/Breadcrumb';
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
-  const { leaders } = useSelector((state) => state);
+  const leaders = useSelector((state) => state.leaders);
 
   return (
     <div className="container">

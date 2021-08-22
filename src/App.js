@@ -1,11 +1,7 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { getDishes } from 'redux/reducers/dishes';
-import { getPromotions } from 'redux/reducers/promotions';
-import { getLeaders } from 'redux/reducers/leaders';
 import { dropAuth, getAuth } from 'redux/reducers/auth';
 
 import AboutUs from 'components/AboutUs/AboutUs';
@@ -18,15 +14,9 @@ import DishDetail from 'components/DishDetail/DishDetail';
 import Favorites from 'components/Favorites/Favorites';
 
 const App = () => {
-  const { dishes, promotions, leaders, auth } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getDishes());
-    dispatch(getPromotions());
-    dispatch(getLeaders());
-  }, [dispatch]);
 
   const login = (username, password) => {
     dispatch(getAuth(username, password));
@@ -40,16 +30,11 @@ const App = () => {
     <div>
       <Header login={login} logout={logout} auth={auth} />
       <Switch>
-        <Route
-          path="/home"
-          render={() => (
-            <Home dishes={dishes} promotions={promotions} leaders={leaders} />
-          )}
-        />
+        <Route path="/home" component={Home} />
         <Route path="/aboutus" component={AboutUs} />
         <Route exact path="/menu" component={Menu} />
         <Route path="/contacts" component={Contacts} />
-        <Route path="/menu/:id" render={() => <DishDetail dishes={dishes} />} />
+        <Route path="/menu/:id" component={DishDetail} />
         {auth.auth && <Route path="/favorites" component={Favorites} />}
         <Redirect to="/home" />
       </Switch>

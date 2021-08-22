@@ -140,7 +140,7 @@ const Header = ({ login, logout, auth }) => {
             initialValues={{
               username: '',
               password: '',
-              remember: false,
+              remember: JSON.parse(localStorage.getItem('remember')),
             }}
             validationSchema={Yup.object({
               username: Yup.string().required('Required'),
@@ -149,6 +149,7 @@ const Header = ({ login, logout, auth }) => {
                 .required('Required'),
             })}
             onSubmit={(values, { setSubmitting }) => {
+              localStorage.setItem('remember', values.remember);
               login(values.username, values.password);
               setSubmitting(false);
               toggleModal();

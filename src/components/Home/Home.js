@@ -1,7 +1,25 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 import CardComponent from 'components/common/Card';
 import Loader from 'components/common/Loader';
 
-const Home = ({ dishes, promotions, leaders }) => {
+import { getDishes } from 'redux/reducers/dishes';
+import { getPromotions } from 'redux/reducers/promotions';
+import { getLeaders } from 'redux/reducers/leaders';
+
+const Home = () => {
+  const dishes = useSelector((state) => state.dishes);
+  const leaders = useSelector((state) => state.leaders);
+  const promotions = useSelector((state) => state.promotions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDishes());
+    dispatch(getLeaders());
+    dispatch(getPromotions());
+  }, [dispatch]);
+
   const [dishForRender] = dishes.filter((dish) => dish.featured);
   const [promoForRender] = promotions.filter((promo) => promo.featured);
   const [leaderForRender] = leaders.filter((leader) => leader.featured);
