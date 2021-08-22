@@ -2,6 +2,7 @@ import { fetchFavorites, postFavorite, removeFavorite } from 'api/api';
 
 const SET_FAVORITES = 'confusion/favorites/SET_FAVORITES';
 const SET_FETCHING = 'confusion/favorites/SET_FETCHING';
+const SET_ERROR = 'confusion/favorites/SET_ERROR';
 
 const initialState = {
   dishes: [],
@@ -18,6 +19,9 @@ export default (state = initialState, { type, payload }) => {
     case SET_FETCHING:
       return { ...state, isFetching: payload };
 
+    case SET_ERROR:
+      return { ...state, errorMessage: payload };
+
     default:
       return state;
   }
@@ -31,6 +35,11 @@ export const setFavorites = (favorites) => ({
 export const setFetching = (payload) => ({
   type: SET_FETCHING,
   payload,
+});
+
+export const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error,
 });
 
 export const getFavorites = () => (dispatch) => {
